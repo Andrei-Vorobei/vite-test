@@ -35,45 +35,25 @@ const config = [
     },
     rules: {
       'no-unused-vars': 'off',
-      'import/no-unresolved': 'error',
+      'import/no-unresolved': ["error", { "commonjs": true, "amd": true }],
       'import/no-unused-modules': 'error',
       'import/order': 'off',
       'perfectionist/sort-imports': [
         'error',
         {
-          type: 'alphabetical',
+          type: 'natural',
           order: 'asc',
+          newlinesBetween: 1,
           groups: [
-            'value-builtin',
+            'type-import',
+            ['value-builtin', 'value-external'],
+            'type-internal',
             'value-internal',
-            ['value-parent', 'value-sibling'],
-            [
-              'type-import',
-              'type-internal',
-              'type-parent',
-              'type-sibling',
-              'type-index'
-             ],
+            ['type-parent', 'type-sibling', 'type-index'],
+            ['value-parent', 'value-sibling', 'value-index'],
             'ts-equals-import',
-            'side-effect-style',
-            'style',
-          ],
-          internalPattern: [
-            '^/',
-            '^@components/',
-            '^@contexts/',
-            '^@hooks/',
-            '^@pages/',
-            '^@services/',
-            '^@utils/',
-          ],
-          customGroups: {
-            value: {
-              'base-components': ['/*/*/[!-]*/*.*'],
-              'compound-components': ['/*/*/*-*/*.*'],
-            },
-          },
-          newlinesBetween: 'always',
+            'unknown'
+          ]
         },
       ],
       'react/jsx-uses-react': 'off',
@@ -90,6 +70,7 @@ const config = [
         alias: {
           map: [
             ['', './public'],
+            ['@', './src'],
             ['@components', './src/components'],
             ['@contexts', './src/contexts'],
             ['@hoc/', './src/hoc'],
@@ -98,6 +79,7 @@ const config = [
             ['@services', './src/services'],
             ['@utils', './src/utils'],
           ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
         },
       },
     },
