@@ -1,3 +1,6 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import storybook from "eslint-plugin-storybook";
+
 import js from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
 import perfectionist from 'eslint-plugin-perfectionist';
@@ -6,11 +9,12 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import unusedImports from 'eslint-plugin-unused-imports';
+import cssModulesPlugin from 'eslint-plugin-css-modules';
 import globals from 'globals';
 
 /** @type {import('eslint').Linter.Config} */
 const config = [
-  { ignores: ['*.config.*', 'dist', 'node_modules', 'package*.json', 'public'] },
+  { ignores: ['*.config.*', 'dist', 'node_modules', 'package*.json', 'public', 'src/stories/'] },
   js.configs.recommended,
   importPlugin.flatConfigs.recommended,
   react.configs.flat.recommended,
@@ -32,9 +36,12 @@ const config = [
       react,
       'react-refresh': reactRefresh,
       'unused-imports': unusedImports,
+      'css-modules': cssModulesPlugin,
     },
     rules: {
       'no-unused-vars': 'off',
+      'css-modules/no-undef-class': 'error',   // Ошибка при несуществующих классах
+      'css-modules/no-unused-class': 'warn',   // Предупреждение о неиспользуемых классах
       'import/no-unresolved': ["error", { "commonjs": true, "amd": true }],
       'import/no-unused-modules': 'error',
       'import/order': 'off',
@@ -81,10 +88,18 @@ const config = [
           ],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
         },
+        'css-modules': {
+          camelCase: 'true',
+          filetypes: {
+            '.css': 'postcss',
+            '.module.css': 'postcss'
+          },
+        },
       },
     },
   },
   eslintPluginPrettierRecommended,
+  ...storybook.configs["flat/recommended"]
 ];
 
 export default config; 

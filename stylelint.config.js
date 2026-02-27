@@ -1,7 +1,7 @@
 /** @type {import('stylelint').Config} */
 const config = {
   extends: ['stylelint-config-standard'],
-  ignoreFiles: ['**/fonts/', '**/images/'],
+  ignoreFiles: ['**/fonts/', '**/images/', 'src/stories/**'],
   plugins: ['stylelint-order'],
   rules: {
     'at-rule-empty-line-before': [

@@ -1,0 +1,40 @@
+.root {
+  padding: 14px 14px 14px 20px;
+  border-radius: 14px;
+}
+
+.rootColorWhite {
+  background-color: #fff;
+}
+
+.rootColorRed {
+  background-color: #d00;
+}
+
+.title,
+.caption {
+  margin: 0;
+  font-size: 16px;
+  font-family: 'lato', sans-serif;
+  line-height: 24px;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.rootColorWhite .title {
+  color: #2f3747;
+}
+
+.rootColorWhite .caption {
+  color: rgb(26 43 77 / 60%);
+}
+
+.rootColorRed .title {
+  color: #fff;
+}
+
+.rootColorRed .caption {
+  color: rgb(255 255 255 / 85%);
+}
